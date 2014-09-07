@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         
         var defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject("0.1", forKey: "tip_percentage")
+        defaults.setObject("0", forKey: "tip_percentage_index")
         defaults.synchronize()
     }
 
@@ -57,7 +58,9 @@ class ViewController: UIViewController {
     func doCalculate() {
         var defaults = NSUserDefaults.standardUserDefaults()
         var tipPercentage = (defaults.objectForKey("tip_percentage") as String)._bridgeToObjectiveC().doubleValue
+        var tipIndex = (defaults.objectForKey("tip_percentage_index") as String)._bridgeToObjectiveC().integerValue
         println("tip %: \(tipPercentage)")
+        println("idx %: \(tipIndex)")
         
         var bill = billTextField.text._bridgeToObjectiveC().doubleValue
         var tip = bill * tipPercentage
